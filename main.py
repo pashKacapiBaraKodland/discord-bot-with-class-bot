@@ -31,4 +31,4 @@ async def spam(longs):
     
 
 
-bot.run("MTIwMTA4ODE0OTU0MDA0NDgyMg.GHaDE4.5bCdJh_spH4-1V8Zdyeku1JOTXbx19k6UeZUVw")
+bot.run("TOKEN OF YOUR BOT")
