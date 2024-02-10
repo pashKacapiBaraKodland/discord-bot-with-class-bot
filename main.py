@@ -18,6 +18,7 @@ async def hello(ctx):
 
 @bot.command()
 async def heh(ctx, count_heh = 5):
+    """Says he as many times as you say"""
     await ctx.send("he" * count_heh)
 
 @bot.command()
@@ -26,10 +27,11 @@ async def calc(ctx, left: int, right: int):
     await ctx.send(left + right)
 
 @bot.command()
-async def spam(ctx): 
+async def spam(ctx):
+    """spamming in chat random letters"""
     await ctx.send(spamm())
     
     
 
 
-bot.run("your token")
+bot.run("TOKEN")
