@@ -26,9 +26,10 @@ async def calc(ctx, left: int, right: int):
     await ctx.send(left + right)
 
 @bot.command()
-async def spam(longs): 
-    await longs.send(spamm(longs))
+async def spam(ctx): 
+    await ctx.send(spamm())
+    
     
 
 
-bot.run("TOKEN OF YOUR BOT")
+bot.run("your token")
