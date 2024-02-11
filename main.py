@@ -1,6 +1,8 @@
 import discord
+import random
 from discord.ext import commands
 from spamd import spamm
+import os
 
 from discord.ext import commands
 intents = discord.Intents.default()
@@ -31,7 +33,20 @@ async def spam(ctx):
     """spamming in chat random letters"""
     await ctx.send(spamm())
     
-    
+@bot.command()
+async def mem(ctx):
+    mems = os.listdir('images')
+    img_name = random.choice(mems)
+    with open(f'images/{img_name}', 'rb') as f:
+            picture = discord.File(f)
+@bot.command()
+async def animal(ctx):
+    mems2 = os.listdir('imagesanimal')
+    images_name = random.choice(mems2)
+    with open(f'imagesanimal/{images_name}', 'rb') as f:
+            picture = discord.File(f)
+   # Можем передавать файл как параметр!
+    await ctx.send(file=picture)
 
 
-bot.run("TOKEN")
+bot.run("token")
