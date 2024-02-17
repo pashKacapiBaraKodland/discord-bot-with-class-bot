@@ -3,7 +3,7 @@ import random
 from discord.ext import commands
 from spamd import spamm
 import os
-
+import requests
 from discord.ext import commands
 intents = discord.Intents.default()
 intents.message_content = True
@@ -16,6 +16,7 @@ async def on_ready():
 
 @bot.command()
 async def hello(ctx):
+    """just say hello and name"""
     await ctx.send(f'Привет! Я бот {bot.user}!')
 
 @bot.command()
@@ -35,10 +36,13 @@ async def spam(ctx):
     
 @bot.command()
 async def mem(ctx):
-    mems = os.listdir('images')
-    img_name = random.choice(mems)
+    images = os.listdir('images')
+    img_name = random.choice(images)
+    # А вот так можно подставить имя файла из переменной!
     with open(f'images/{img_name}', 'rb') as f:
             picture = discord.File(f)
+    await ctx.send(file=picture)
+
 @bot.command()
 async def animal(ctx):
     mems2 = os.listdir('imagesanimal')
@@ -47,6 +51,17 @@ async def animal(ctx):
             picture = discord.File(f)
    # Можем передавать файл как параметр!
     await ctx.send(file=picture)
+def get_duck_image_url():    
+    url = 'https://random-d.uk/api/random'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
 
+
+@bot.command('duck')
+async def duck(ctx):
+    '''По команде duck вызывает функцию get_duck_image_url'''
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
 
 bot.run("token")
